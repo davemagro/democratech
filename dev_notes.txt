@@ -1,0 +1,11 @@
+PostgreSQL 
+
+https://www3.ntu.edu.sg/home/ehchua/programming/sql/PostgreSQL_GetStarted.html
+
+sudo -u postgres psql 
+
+CREATE DATABASE democratech; 
+
+CREATE ROLE democratech LOGIN PASSWORD 'democratech'; 
+
+GRANT ALL PRIVILEGES ON DATABASE "democratech" to democratech; 
