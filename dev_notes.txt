@@ -9,3 +9,10 @@ CREATE DATABASE democratech;
 CREATE ROLE democratech LOGIN PASSWORD 'democratech'; 
 
 GRANT ALL PRIVILEGES ON DATABASE "democratech" to democratech; 
+
+
+
+Docker 
+
+https://docs.docker.com/engine/install/ubuntu/
+
