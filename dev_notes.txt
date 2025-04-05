@@ -16,3 +16,12 @@ Docker
 
 https://docs.docker.com/engine/install/ubuntu/
 
+
+
+
+# VPS setup 
+
+- make project dir 
+- clone project 
+- install docker 
+- sudo apt update -y 

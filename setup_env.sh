@@ -1,5 +1,18 @@
 #!/bin/bash 
 
+git reset --hard HEAD
+git clean -fd
+git pull origin main
+
+composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader 
+npm ci 
+npm run build --
+php artisan migrate --force 
+php artisan optimize:clear 
+php artisan config:cache 
+php artisan route:cache 
+
+
 cp .env.example .env
 
 sed -i "s/DB_HOST=.*/DB_HOST=$DB_HOST/" .env
