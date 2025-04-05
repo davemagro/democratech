@@ -1,5 +1,11 @@
 #!/bin/bash 
 
+if [ ! -d "$LARAVEL_PROJECT_PATH" ]; then
+    echo "LARAVEL_PROJECT_PATH does not exist. Please set it in the environment."
+    exit 1
+fi
+cd $LARAVEL_PROJECT_PATH
+
 git reset --hard HEAD
 git clean -fd
 git pull origin main
