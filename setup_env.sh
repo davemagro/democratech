@@ -10,7 +10,7 @@ git reset --hard HEAD
 git clean -fd
 git pull origin main
 
-composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader 
+COMPOSER_ALLOW_SUPERUSER=1 composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader 
 npm ci 
 npm run build --
 php artisan migrate --force 
@@ -31,5 +31,6 @@ if [ ! -d "$LARAVEL_STORAGE_PATH" ]; then
     mkdir -p $LARAVEL_STORAGE_PATH
 fi
 
+LARAVEL_STORAGE_PATH=$(echo $LARAVEL_STORAGE_PATH | sed 's/\//\\\//g')
 sed -i "s/LARAVEL_STORAGE_PATH=.*/LARAVEL_STORAGE_PATH=$LARAVEL_STORAGE_PATH/" .env
 
