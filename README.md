@@ -113,6 +113,8 @@ Review a report:
 
 Recommendation models: 
 
+  - recommendation is based on relevance to a user and the freshness
+
 	- content based filtering 
 		
 		- personalized
@@ -129,3 +131,35 @@ Recommendation models:
     - recommend posts which are well-vouched by the community, but maybe has not yet reached a certain threshold
 
       - if a post reaches a certain threshold, further reviews may not be needed
+
+    - recommendation strategy for brand new reports:
+
+      - brand new reports gets recommended to who? 
+
+        - depending on who posted it
+
+          - if submitted by a new user, it gets recommended only to people who 
+            is in roughly the same space as the post 
+
+          - if submitted by a user with previous submissions and interactions, 
+            the report will be recommended
+
+
+Architecture: 
+
+- upon submission, the system will find recommendations list to which this post 
+  can fit into
+
+
+
+Limitations: 
+
+- relies on users submitting high quality reports 
+
+  - enough appropriate tags, etc. 
+
+  - but it could be made not to, i.e. rely on user alone to submit high quality reports 
+    by using named entity recognitions, topic modelling, etc.
+
+
+

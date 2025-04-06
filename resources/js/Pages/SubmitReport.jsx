@@ -428,7 +428,7 @@ export function SubmitReportForm() {
           <ReportLocationForm 
             locations={ !locationsJsonQuery.isSuccess ? {} : locationsJsonQuery.data } 
             initialValues={reportLocation}
-            onLocationChange={({province, municipality, barangay}) => {}} 
+            onLocationChange={({province, municipality, barangay}) => setReportLocation({province, municipality, barangay})} 
             />
 
         </Stack>
