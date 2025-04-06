@@ -8,3 +8,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])
 Route::get('/about', function () {
     return 'Hello'; 
 }); 
+
+Route::get('/submit', [App\Http\Controllers\SubmitReportController::class, 'index'])
+    ->name('submit');

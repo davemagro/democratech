@@ -1,10 +1,22 @@
 import '@mantine/core/styles.css'
 import './bootstrap';
 
+import classes from './App.module.css'; 
+
 import { createInertiaApp } from '@inertiajs/react'
 import { createRoot } from 'react-dom/client'
 
 import { createTheme, MantineProvider } from '@mantine/core'; 
+
+// const theme = createTheme({
+//   components: {
+//     Container: Container.extend({
+//       classNames: (_, { size }) => ({
+//         root: cx({ [classes.responsiveContainer]: size === 'responsive' }),
+//       }),
+//     }),
+//   },
+// });
 
 createInertiaApp({
   resolve: name => {
@@ -13,7 +25,9 @@ createInertiaApp({
   },
   setup({ el, App, props }) {
     createRoot(el).render(
-      <MantineProvider>
+      <MantineProvider 
+        // theme={theme}
+        >
         <App {...props} />
       </MantineProvider>
     )
