@@ -30,6 +30,9 @@ sed -i "s/SERVER_NAME=.*/SERVER_NAME=$SERVER_NAME/" .env
 
 npm ci 
 npm run build
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
 php artisan migrate --force 
 php artisan optimize:clear 
 php artisan config:cache 
