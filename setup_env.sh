@@ -26,6 +26,7 @@ fi
 
 LARAVEL_STORAGE_PATH=$(echo $LARAVEL_STORAGE_PATH | sed 's/\//\\\//g')
 sed -i "s/LARAVEL_STORAGE_PATH=.*/LARAVEL_STORAGE_PATH=$LARAVEL_STORAGE_PATH/" .env
+sed -i "s/SERVER_NAME=.*/SERVER_NAME=$SERVER_NAME/" .env
 
 npm ci 
 npm run build

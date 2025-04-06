@@ -27,9 +27,10 @@ jobs:
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         LARAVEL_PROJECT_PATH: /var/www/${{ secrets.DEPLOY_SERVER_DIR }}
         LARAVEL_STORAGE_PATH: /var/www/storage/${{ secrets.DEPLOY_SERVER_DIR }}
+        SERVER_NAME: ${{ secrets.SERVER_NAME }}
       with:
         host: ${{ secrets.DEPLOY_SERVER_IP }}
         username: ${{ secrets.DEPLOY_SERVER_USER }}
         password: ${{ secrets.DEPLOY_SSH_PASSWORD }}
-        envs: DB_HOST,DB_PORT,DB_DATABASE,DB_USERNAME,DB_PASSWORD,LARAVEL_PROJECT_PATH,LARAVEL_STORAGE_PATH
+        envs: DB_HOST,DB_PORT,DB_DATABASE,DB_USERNAME,DB_PASSWORD,LARAVEL_PROJECT_PATH,LARAVEL_STORAGE_PATH,SERVER_NAME
         script_path: setup_env.sh
