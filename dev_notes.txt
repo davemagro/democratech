@@ -27,3 +27,4 @@ https://docs.docker.com/engine/install/ubuntu/
 - sudo apt update -y 
 - install laravel 
   - remove non-interactive check on bashrc
+- install nvm (node 18)

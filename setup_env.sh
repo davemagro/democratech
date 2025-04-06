@@ -11,13 +11,6 @@ git clean -fd
 git pull origin main
 
 COMPOSER_ALLOW_SUPERUSER=1 composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader 
-npm ci 
-npm run build --
-php artisan migrate --force 
-php artisan optimize:clear 
-php artisan config:cache 
-php artisan route:cache 
-
 
 cp .env.example .env
 
@@ -34,3 +27,12 @@ fi
 LARAVEL_STORAGE_PATH=$(echo $LARAVEL_STORAGE_PATH | sed 's/\//\\\//g')
 sed -i "s/LARAVEL_STORAGE_PATH=.*/LARAVEL_STORAGE_PATH=$LARAVEL_STORAGE_PATH/" .env
 
+npm ci 
+npm run build
+php artisan migrate --force 
+php artisan optimize:clear 
+php artisan config:cache 
+php artisan route:cache 
+
+docker compose down --rmi all --volumes
+docker compose up -d --wait 
