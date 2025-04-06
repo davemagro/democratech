@@ -1,4 +1,5 @@
 import '@mantine/core/styles.css'
+import '@mantine/notifications/styles.css'
 import './bootstrap';
 
 import classes from './App.module.css'; 
@@ -6,7 +7,10 @@ import classes from './App.module.css';
 import { createInertiaApp } from '@inertiajs/react'
 import { createRoot } from 'react-dom/client'
 
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+
 import { createTheme, MantineProvider } from '@mantine/core'; 
+import { Notifications } from '@mantine/notifications';
 
 // const theme = createTheme({
 //   components: {
@@ -18,6 +22,8 @@ import { createTheme, MantineProvider } from '@mantine/core';
 //   },
 // });
 
+const queryClient = new QueryClient();
+
 createInertiaApp({
   resolve: name => {
     const pages = import.meta.glob('./Pages/**/*.jsx', { eager: true })
@@ -25,11 +31,14 @@ createInertiaApp({
   },
   setup({ el, App, props }) {
     createRoot(el).render(
-      <MantineProvider 
-        // theme={theme}
-        >
-        <App {...props} />
-      </MantineProvider>
+      <QueryClientProvider client={queryClient}>
+        <MantineProvider 
+          // theme={theme}
+          >
+          <Notifications />
+          <App {...props} />
+        </MantineProvider>
+      </QueryClientProvider>
     )
   },
 })

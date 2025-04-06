@@ -63,6 +63,69 @@
       the ones to which they are most likely to provide helpful evaluations 
       to.
 
-    -
-
 - Chats channels 
+
+
+
+
+File a report
+
+- what's happening 
+
+- additional information: 
+
+	- ideal: Additional information is inferred and is show a preview 
+		 if location cannot be inferred but seems to be critical that 
+		 it should be, an indicator is shown to encourage the user to 
+		 add the said information (i.e. location) 
+
+		- additional informations: are those that can help us relate 
+			these reports to other users. the more information 
+			we get for a post, the better we relate it to our user.
+
+	- f.t.m.: Users will manyally add the additional information. All of 
+		 these are considered optional.
+
+
+
+
+Review a report: 
+
+- report view 
+
+- review criteria: 
+
+	- how factual? 
+
+	- how neutral 
+
+	- quality 
+
+		- easy to understand / straight to the point 
+
+		- sites high quality sources 
+	
+	- how relevant is the report to the incident it is reporting 
+
+		- does the report address the issue directly? 
+
+
+
+Recommendation models: 
+
+	- content based filtering 
+		
+		- personalized
+
+      - recommend reports who are similar to the user's own reports 
+
+      - recommend reports to which are similar to reports that the user has 
+        previously reviewed on 
+
+    - recommend reports who are made by highly vouched users 
+
+    - recommend reports who is getting viral (getting a lot of reviews in a short amount of time)
+
+    - recommend posts which are well-vouched by the community, but maybe has not yet reached a certain threshold
+
+      - if a post reaches a certain threshold, further reviews may not be needed

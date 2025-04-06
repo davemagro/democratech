@@ -11,3 +11,5 @@ Route::get('/about', function () {
 
 Route::get('/submit', [App\Http\Controllers\SubmitReportController::class, 'index'])
     ->name('submit');
+Route::post('/submit', [\App\Http\Controllers\SubmitReportController::class, 'save'])
+    ->name('submit.save'); 
