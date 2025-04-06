@@ -1,5 +1,10 @@
+import { Title } from "@mantine/core"
+
+
 export default function Home() {
   return (
-    <h1>Hello World!</h1>
+    <Title order={1} align="center" mt="md">
+      Hello bibi 🥹😚
+    </Title>
   ); 
 }
