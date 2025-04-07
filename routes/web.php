@@ -16,7 +16,6 @@ Route::get('/sign-in', [AuthController::class, 'signin'])
 Route::post('/sign-in', [AuthController::class, 'signinSave'])
     ->name('signin.save'); 
  
- 
 
 
 Route::get('/about', function () {
@@ -31,3 +30,9 @@ Route::post('/submit', [\App\Http\Controllers\SubmitReportController::class, 'sa
     ->middleware('auth');
     
     
+Route::get('/review/{id}', [App\Http\Controllers\ReportReviewController::class, 'index'])
+    ->name('review')
+    ->middleware('auth');
+Route::post('/review/{id}', [App\Http\Controllers\ReportReviewController::class, 'save'])
+    ->name('review.save')
+    ->middleware('auth');

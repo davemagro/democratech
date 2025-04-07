@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useDisclosure, useHover } from "@mantine/hooks";
 import { notifications } from '@mantine/notifications'; 
 import { useForm } from "@inertiajs/react";
+import { formatFileSize } from "../util";
 
 function FieldLabel({ children }) {
   return (
@@ -90,7 +91,7 @@ function ReportSubjectForm({ initialValues, onChange }) {
         limit={5}
         acceptValueOnBlur={false}
         clearable
-        placeholder="Select or specify the subjects involved"
+        placeholder="Select or specify the individuals, groups, or organizations involved"
         value={subjects}
         onChange={setSubjects}              
         />
@@ -243,14 +244,6 @@ function ReportDescriptionForm({ initialValues, onChange }) {
 
   const removeImage = (index) => setImages(images.filter((_, i) => i !== index));
   const removeFile = (index) => setFiles(files.filter((_, i) => i !== index));
-
-  const formatFileSize = (bytes) => {
-    if (bytes === 0) return '0 Bytes';
-    
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(1024));
-    return `${(bytes / Math.pow(1024, i)).toFixed(2)} ${sizes[i]}`;
-  };
 
   const imagePreviews = images.map((file, index) => {
     return <ImagePreview key={index} file={file} onRemove={() => removeImage(index)} />;

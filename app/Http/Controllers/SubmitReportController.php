@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Report;
 use App\Models\ReportImage;
+use App\Models\ReportFile;
 use App\Models\ReportType;
 use App\Models\ReportSubjectEntity;
 use App\Models\ReportLocation;
@@ -60,7 +61,12 @@ class SubmitReportController extends Controller
                 
                 $filename = time() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('report_files/' . auth()->user()->id, $filename, 'public'); 
-                $reportFiles[] = new ReportImage(['path' => 'storage/' . $path]); 
+                $reportFiles[] = new ReportFile([
+                    'path' => 'storage/' . $path, 
+                    'file_name' => $file->getClientOriginalName(), 
+                    'file_type' => $file->getClientOriginalExtension(), 
+                    'file_size' => $file->getSize()
+                ]); 
             }
             $report->files()->saveMany($reportFiles); 
         }        

@@ -28,4 +28,8 @@ class Report extends Model
     public function types() {
         return $this->belongsToMany(ReportType::class); 
     }
+
+    public function reviews() {
+        return $this->hasMany(Review::class); 
+    }
 }
