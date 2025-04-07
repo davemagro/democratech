@@ -38,6 +38,8 @@ php artisan route:cache
 php artisan cache:clear
 php artisan config:clear
 php artisan view:clear
+php artisan storage:unlink
+php artisan storage:link --relative
 
 docker compose down --rmi all # --volumes
 docker compose up -d --wait 
