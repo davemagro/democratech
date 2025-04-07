@@ -39,5 +39,5 @@ php artisan cache:clear
 php artisan config:clear
 php artisan view:clear
 
-docker compose down --rmi all --volumes
+docker compose down --rmi all # --volumes
 docker compose up -d --wait 
