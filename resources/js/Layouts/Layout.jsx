@@ -35,7 +35,7 @@ export default function Layout({ children }) {
         >
         <Grid gutter="0.2rem">
           <Grid.Col span={{base: 2, md: 2}} visibleFrom="md">
-            <Text fw={700} size="xl" visibleFrom="md">FactsHub</Text>
+            <Text component={Link} href="/" fw={700} size="xl" visibleFrom="md">FactsHub</Text>
           </Grid.Col>
           <Grid.Col span="auto">
             <Grid>

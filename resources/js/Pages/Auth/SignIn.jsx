@@ -1,5 +1,6 @@
 import { useForm, usePage } from "@inertiajs/react";
 import { Button, Stack, TextInput, Container, Paper, Text } from "@mantine/core"
+import { Link } from "@inertiajs/react";
 
 export default function SignIn() {
 
@@ -20,7 +21,7 @@ export default function SignIn() {
           <Paper shadow="xs" p="lg">
             <form onSubmit={handleSubmit}>
               <Stack>
-                <Text>Sign In</Text>
+                <Text component={Link} href="/" ta="center" fw={700} size="xl">FactsHub</Text>
                 {pageErrors && <Text color="red">{Object.values(pageErrors).join(', ')}</Text>}
                 <TextInput 
                   label="E-mail address" 
@@ -38,6 +39,7 @@ export default function SignIn() {
                   type="password"
                   />     
                 <Button type="submit" disabled={processing}>Sign In</Button>
+                <Button variant="subtle" component={Link} href="/sign-up">Register</Button>
               </Stack>
             </form>
           </Paper>
