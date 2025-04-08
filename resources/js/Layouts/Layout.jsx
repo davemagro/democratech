@@ -11,9 +11,7 @@ export default function Layout({ children }) {
     search: "",
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
+  const handleSubmit = () => {
     if (data.search.length > 0) {
       post("/search");
     }
@@ -35,29 +33,24 @@ export default function Layout({ children }) {
       <AppShell.Header
         py="md"
         >
-        <Grid>
+        <Grid gutter="0.2rem">
           <Grid.Col span={{base: 2, md: 2}} visibleFrom="md">
             <Text fw={700} size="xl" visibleFrom="md">FactsHub</Text>
           </Grid.Col>
-          <Grid.Col span={{base: 10, md: 8}}>
-            <Group justify="center">
-              <Burger
-                hiddenFrom="sm"
-                opened={opened}
-                onClick={toggle}
-                size="sm"
-                color="gray"
-                />                  
-              <form onSubmit={handleSubmit}>                
-                <Group gap="0.2rem">
-                  <TextInput placeholder="Search" value={data.search} onChange={(e) => setData("search", e.target.value)}/>
-                  <Button type="submit" variant="default" >
-                    <IconSearch size={16} />
-                  </Button>
-                </Group>
-              </form>
-              <Button mw="4rem" component={Link} href="/submit">Submit a Report</Button>
-            </Group>
+          <Grid.Col span="auto">
+            <Grid>
+              <Grid.Col span="auto">
+                <TextInput placeholder="Search" value={data.search} onChange={(e) => setData("search", e.target.value)}/>
+              </Grid.Col>
+              <Grid.Col span="content">
+                <Button onClick={handleSubmit} variant="default" >
+                  <IconSearch size={16} />
+                </Button>
+              </Grid.Col>
+              <Grid.Col span="content">
+                <Button component={Link} href="/submit">Submit a Report</Button>
+              </Grid.Col>
+            </Grid>
           </Grid.Col>
           <Grid.Col span={{base: 0, md: 2}} visibleFrom="md">
             <Flex justify="flex-end" gap="sm" align="center" h="100%" visibleFrom="md">
