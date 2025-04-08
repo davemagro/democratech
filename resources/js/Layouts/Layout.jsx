@@ -3,7 +3,11 @@ import { Link } from "@inertiajs/react";
 import { IconSearch } from "@tabler/icons-react";
 import { useForm } from "@inertiajs/react";
 import { useDisclosure } from "@mantine/hooks";
+import { usePage } from "@inertiajs/react";
+
 export default function Layout({ children }) {
+
+  const { auth } = usePage().props;
 
   const [opened, { toggle }] = useDisclosure(false);
 
@@ -54,8 +58,14 @@ export default function Layout({ children }) {
           </Grid.Col>
           <Grid.Col span={{base: 0, md: 2}} visibleFrom="md">
             <Flex justify="flex-end" gap="sm" align="center" h="100%" visibleFrom="md">
-              <UnstyledButton component={Link} href="/sign-in">Login</UnstyledButton>
-              <UnstyledButton component={Link} href="/sign-up">Register</UnstyledButton>
+              {auth.user ? (
+                <UnstyledButton component={Link} href="/sign-out">Logout</UnstyledButton>
+              ) : (
+                <>
+                  <UnstyledButton component={Link} href="/sign-in">Login</UnstyledButton>
+                  <UnstyledButton component={Link} href="/sign-up">Register</UnstyledButton>
+                </>
+              )}
             </Flex>
           </Grid.Col>
         </Grid>
