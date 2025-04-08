@@ -9,7 +9,7 @@ use App\Models\Report;
 class HomeController extends Controller
 {
     public function index() {
-        $reports = Report::with('images')->with('files')->get(); 
+        $reports = Report::with('images')->with('files')->get()->sortByDesc('created_at')->values()->all(); 
         return Inertia::render('Home', ['reports' => $reports]); 
     }
 }

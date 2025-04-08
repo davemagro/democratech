@@ -12,6 +12,8 @@ import { useDisclosure } from "@mantine/hooks"
 import { useEffect, useState } from "react"
 import { notifications } from "@mantine/notifications"
 
+import Layout from "../Layouts/Layout"
+
 export function ReportView({report}) {
 
   /*
@@ -114,13 +116,12 @@ export function ReportView({report}) {
       <Stack gap="lg">
         <Grid>
           <Grid.Col span="content">
-            {/* <Avatar/> */}
             <ThemeIcon variant="light" color="gray" size="xl" radius="xl">
               <IconUserCircle />
             </ThemeIcon>
           </Grid.Col>
           <Grid.Col span="auto">
-            <Stack gap="0.3rem">
+            <Stack gap="0.3rem" pt="0.3rem">
               <Text size="sm" c="dimmed">{ moment(report.created_at).fromNow()}</Text>
               <Paper p="xs" withBorder c="dark.5" radius="md" style={{borderTopLeftRadius: 0}}>
                 <Text size="sm" style={{whiteSpace: "pre-wrap"}}>{report.body}</Text>
@@ -136,7 +137,7 @@ export function ReportView({report}) {
               </ThemeIcon>
             </Grid.Col>
             <Grid.Col span="auto">
-              <Stack gap="0.3rem">
+              <Stack gap="0.3rem" pt="0.3rem">
                 <Text size="sm" c="dimmed">
                   Added images 
                 </Text>
@@ -163,7 +164,7 @@ export function ReportView({report}) {
               </ThemeIcon>
             </Grid.Col>
             <Grid.Col span="auto">
-              <Stack gap="0.3rem">
+              <Stack gap="0.3rem" pt="0.3rem">
                 <Text size="sm" c="dimmed">Attached files </Text>
                 <Stack gap="0.3rem">
                   {report.files.map((file) => (
@@ -190,9 +191,9 @@ export function ReportView({report}) {
         <Text size="sm" c="dimmed">Should more people see this?</Text>
         {/* <Button variant="default" onClick={toggle}>{opened ? "Cancel" : "Rate"}</Button> */}
         <Group justify="center" gap="xs">
-          <Button variant={rating === "yes" ? "light" : "default"} leftSection={<IconThumbUp />} onClick={() => setRating("yes")}>Yes</Button>
-          <Button variant={rating === "hmmmm" ? "light" : "default"} leftSection={<IconBubble />} onClick={() => setRating("hmmmm")}>Hmmmm</Button>
-          <Button variant={rating === "no" ? "light" : "default"} leftSection={<IconThumbDown />} onClick={() => setRating("no")}>No</Button>
+          <Button variant={rating === "yes" ? "light" : "default"} leftSection={<IconThumbUp />} onClick={() => setRating((prev) => prev === "yes" ? null : "yes")}>Yes</Button>
+          <Button variant={rating === "hmmmm" ? "light" : "default"} leftSection={<IconBubble />} onClick={() => setRating((prev) => prev === "hmmmm" ? null : "hmmmm")}>Hmmmm</Button>
+          <Button variant={rating === "no" ? "light" : "default"} leftSection={<IconThumbDown />} onClick={() => setRating((prev) => prev === "no" ? null : "no")}>No</Button>
         </Group>        
       </Group>
       <Collapse in={opened}>
@@ -222,7 +223,7 @@ export function ReportView({report}) {
   ); 
 }
 
-export default function Home() {
+function Home() {
   const { reports } = usePage().props; 
   return (
     <Container size="sm" mx="auto" my="lg">
@@ -234,3 +235,7 @@ export default function Home() {
     </Container>
   ); 
 }
+
+Home.layout = (page) => <Layout>{page}</Layout>; 
+
+export default Home; 

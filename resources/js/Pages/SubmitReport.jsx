@@ -387,6 +387,7 @@ export function SubmitReportForm() {
         title: 'Report details required.', 
         message: 'You must provide at least a written report, or an image or a file to submit a report.'
       }); 
+      return; 
     }
 
     submitReportRequest.setData('detail_body', reportDetails.body); 
@@ -398,6 +399,12 @@ export function SubmitReportForm() {
 
     submitReportRequest.post(route('submit.save')); 
   }
+
+  useEffect(() => {
+    if (locationsJsonQuery.isSuccess) {
+      console.log(">>> ", locationsJsonQuery.data); 
+    }
+  }, [locationsJsonQuery.isSuccess, locationsJsonQuery.isLoading]);
 
   return (
   <Card shadow="xs" padding="lg" radius="md">

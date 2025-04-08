@@ -36,3 +36,8 @@ Route::get('/review/{id}', [App\Http\Controllers\ReportReviewController::class, 
 Route::post('/review/{id}', [App\Http\Controllers\ReportReviewController::class, 'save'])
     ->name('review.save')
     ->middleware('auth');
+
+Route::get('/search', [App\Http\Controllers\SearchController::class, 'index'])
+    ->name('search');
+Route::post('/search', [App\Http\Controllers\SearchController::class, 'index'])
+    ->name('search.save');
