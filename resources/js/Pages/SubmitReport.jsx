@@ -239,6 +239,7 @@ function ReportDescriptionForm({ initialValues, onChange }) {
   const [files, setFiles] = useState(initialValues.files);
 
   useEffect(() => {
+    console.log('Setting body: ', reportBody); 
     onChange({body: reportBody, images, files}); 
   }, [reportBody, images.length, files.length]); 
 
@@ -380,8 +381,9 @@ export function SubmitReportForm() {
   }); 
 
   const handleSubmit = () => {
-    if (reportDetails.body.length <= 0 && reportDetails.files.length <= 0 
-        && reportDetails.images.length <= 0) {
+      if (submitReportRequest.data.detail_body.length <= 0 
+        && submitReportRequest.data.detail_files.length <= 0 
+          && submitReportRequest.data.detail_images.length <= 0) {
       notifications.show({
         color: "red", 
         title: 'Report details required.', 
@@ -390,26 +392,23 @@ export function SubmitReportForm() {
       return; 
     }
 
-    submitReportRequest.setData('detail_body', reportDetails.body); 
-    submitReportRequest.setData('detail_images', reportDetails.images); 
-    submitReportRequest.setData('detail_files', reportDetails.files);
-    submitReportRequest.setData('categories', reportCategories);
-    submitReportRequest.setData('subject_entities', reportSubjectEntities);
-    submitReportRequest.setData('locations', [reportLocation]);
-
     submitReportRequest.post(route('submit.save')); 
   }
-
-  useEffect(() => {
-    if (locationsJsonQuery.isSuccess) {
-      console.log(">>> ", locationsJsonQuery.data); 
-    }
-  }, [locationsJsonQuery.isSuccess, locationsJsonQuery.isLoading]);
 
   return (
   <Card shadow="xs" padding="lg" radius="md">
     <Card.Section withBorder py="lg" px="md">
-      <ReportDescriptionForm initialValues={reportDetails} onChange={({body, images, files}) => setReportDetails({body, images, files})} />
+      <ReportDescriptionForm 
+        initialValues={{
+          body: submitReportRequest.data.detail_body, 
+          images: submitReportRequest.data.detail_images, 
+          files: submitReportRequest.data.detail_files
+        }} 
+        onChange={({body, images, files}) => {  
+          submitReportRequest.setData('detail_body', body); 
+          submitReportRequest.setData('detail_images', images); 
+          submitReportRequest.setData('detail_files', files); 
+        }} />
     </Card.Section>
     <Card.Section withBorder bg={hovered ? "rgba(0, 0, 0, 0.025)" : ""}>
       <Box onClick={toggle} style={{cursor: "pointer"}} p="lg" ref={ref}> 
@@ -423,12 +422,17 @@ export function SubmitReportForm() {
       <Collapse in={opened} px="3.5rem" pb="lg">
         <Stack gap="lg">
 
-          <ReportNatureForm initialValues={{categories: reportCategories}} onChange={setReportCategories} />
-          <ReportSubjectForm initialValues={{subjects: reportSubjectEntities}} onChange={setReportSubjectEntities} />
+          <ReportNatureForm 
+            initialValues={{categories: submitReportRequest.data.categories}} 
+            onChange={(categories) => submitReportRequest.setData('categories', categories)} />
+          <ReportSubjectForm 
+            initialValues={{subjects: submitReportRequest.data.subject_entities}} 
+            onChange={(subjects) => submitReportRequest.setData('subject_entities', subjects)} 
+          />
           <ReportLocationForm 
             locations={ !locationsJsonQuery.isSuccess ? {} : locationsJsonQuery.data } 
-            initialValues={reportLocation}
-            onLocationChange={({province, municipality, barangay}) => setReportLocation({province, municipality, barangay})} 
+            initialValues={submitReportRequest.data.locations.length > 0 ? submitReportRequest.data.locations[0] : {}}
+            onLocationChange={({province, municipality, barangay}) => submitReportRequest.setData('locations', province ? [{province, municipality, barangay}] : [])} 
             />
 
         </Stack>
