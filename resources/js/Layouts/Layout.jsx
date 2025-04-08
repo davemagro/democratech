@@ -39,7 +39,7 @@ export default function Layout({ children }) {
         >
         <Grid gutter="0.2rem">
           <Grid.Col span={{base: 2, md: 2}} visibleFrom="md">
-            <Text component={Link} href="/" fw={700} size="xl" visibleFrom="md">FactsHub</Text>
+            <Text component={Link} href="/" fw={700} size="xl" visibleFrom="md" ml="md">FactsHub</Text>
           </Grid.Col>
           <Grid.Col span="auto">
             <Grid>
@@ -57,7 +57,7 @@ export default function Layout({ children }) {
             </Grid>
           </Grid.Col>
           <Grid.Col span={{base: 0, md: 2}} visibleFrom="md">
-            <Flex justify="flex-end" gap="sm" align="center" h="100%" visibleFrom="md">
+            <Flex justify="flex-end" gap="sm" align="center" h="100%" visibleFrom="md" mr="md">
               {auth.user ? (
                 <UnstyledButton component={Link} href="/sign-out">Logout</UnstyledButton>
               ) : (
