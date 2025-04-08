@@ -14,4 +14,4 @@ Besides from the community within it, this also gives everyone a place on the in
 
 FactsHub allows users to share any type of information. Those information will be verified by the community. [If the community flags it, it will be diminished.]
 
-FactsHub algorithm prioritize posts vetted by users who have gained good reputation. Users reputation will depend on if their own posts gets vetted and received well by the community and if the reviews they've done on other users' posts aligns well with that of the concensus. 
+FactsHub algorithm prioritize posts vetted by users who have gained good reputation. Users' reputation will depend on if their own posts gets vetted and received well by the community and if the reviews they've done on other users' posts aligns well with that of the concensus. This system discourages the users to post low quality or even malicious posts/reports, doing so will cause risk loosing their account's reputation score, limiting risking their future posts to loose visibility. It also penalizes those who attempt to manipulate the system by submitting fraudelent reviews.  
