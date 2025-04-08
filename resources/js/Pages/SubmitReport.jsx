@@ -6,7 +6,7 @@ import { useDisclosure, useHover } from "@mantine/hooks";
 import { notifications } from '@mantine/notifications'; 
 import { useForm } from "@inertiajs/react";
 import { formatFileSize } from "../util";
-
+import Layout from "../Layouts/Layout";
 function FieldLabel({ children }) {
   return (
     <Text size="sm" fw="500">
@@ -239,7 +239,6 @@ function ReportDescriptionForm({ initialValues, onChange }) {
   const [files, setFiles] = useState(initialValues.files);
 
   useEffect(() => {
-    console.log('Setting body: ', reportBody); 
     onChange({body: reportBody, images, files}); 
   }, [reportBody, images.length, files.length]); 
 
@@ -453,7 +452,7 @@ export function SubmitReportForm() {
   ); 
 }
 
-export default function SubmitReport() {
+function SubmitReport() {
 
   const locationsJsonQuery = useQuery({
     queryKey: ["locations-json"],
@@ -520,3 +519,7 @@ export default function SubmitReport() {
   ); 
 
 }
+
+SubmitReport.layout = (page) => <Layout>{page}</Layout>; 
+
+export default SubmitReport; 
