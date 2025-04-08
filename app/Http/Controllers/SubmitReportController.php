@@ -21,15 +21,15 @@ class SubmitReportController extends Controller
 
         $form = request()->validate([
             'detail_body' => 'string', 
-            'detail_images' => 'array', 
+            'detail_images' => 'nullable|array', 
             'detail_images.*' => 'image', 
-            'detail_files' => 'array', 
+            'detail_files' => 'nullable|array', 
             'detail_files.*' => 'file', 
-            'categories' => 'array', 
+            'categories' => 'nullable|array', 
             'categories.*' => 'string', 
-            'subject_entities' => 'array', 
+            'subject_entities' => 'nullable|array', 
             'subject_entities.*' => 'string', 
-            'locations' => 'array', 
+            'locations' => 'nullable|array', 
             'locations.*' => 'array'
         ]);
 
@@ -73,7 +73,7 @@ class SubmitReportController extends Controller
 
         // For each submitted category, create a new report type if it doesn't exist, and associate the report with the report type
         $reportTypes = []; 
-        foreach ($form['categories'] as $cat) {
+        foreach (($form['categories'] ?? []) as $cat) {
             $reportType = ReportType::firstOrCreate(['name' => $cat]); 
             $reportTypes[] = $reportType->id; 
         }
@@ -82,14 +82,14 @@ class SubmitReportController extends Controller
 
         // For each submitted subject entity, create a new subject entity if it doesn't exist, and associate the report with the subject entity
         $subjectEntities = []; 
-        foreach ($form['subject_entities'] as $entity) {
+        foreach (($form['subject_entities'] ?? []) as $entity) {
             $subjectEntity = ReportSubjectEntity::firstOrCreate(['name' => $entity]); 
             $subjectEntities[] = $subjectEntity->id; 
         }
         $report->subjectEntities()->attach($subjectEntities); 
 
         $locations = []; 
-        foreach ($form['locations'] as $location) {
+        foreach (($form['locations'] ?? []) as $location) {
             $locations[] = new ReportLocation(['province' => $location['province'], 'municipality' => $location['municipality'], 'barangay' => $location['barangay']]); 
         }
         $report->locations()->saveMany($locations); 

@@ -9,5 +9,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::call(function() {
-
-})->everyTenMinutes(); 
+    
+})->everyTenMinutes()->withoutOverlapping(); 
